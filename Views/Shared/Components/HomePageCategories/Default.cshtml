@@ -1,0 +1,41 @@
+﻿@model IList<CategoryModel>
+@inject DisplayOrderHomePage order
+<div class="categoryGrid order-@order.HomePageCategories cosmoware-homepage-categories">
+    <div cols="12" class="col-12 px-0">
+        <div class="form-row">
+            @foreach (var item in Model)
+            {
+                string customSubtitle = item.UserFields.FirstOrDefault(i => i.Key == "CardSubtitle")?.Value;
+
+                <div class="col-xl-@order.Pc_Xl col-lg-@order.Pc_Lg col-md-@order.Pc_Md col-sm-@order.Pc_Sm col-@order.Pc_Col">
+                    @*<a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title">
+                            <article class="card mb-2 category-card cosmoware-card">
+                                <b-card-img-lazy src="@item.PictureModel.ImageUrl" alt="@item.PictureModel.AlternateText"></b-card-img-lazy>
+                                <div class="card-img-overlay">
+                                    <div class="text-center category-title">
+                                        <div class="text-uppercase font-weight-bold">@item.Name</div>
+                                    </div>
+                                </div>
+                            </article>
+                        </a>*@
+                    <div class="cosmoware-card">
+                        <figure class="snip1190">
+                            <img src="@item.PictureModel.ImageUrl" alt="@item.PictureModel.AlternateText" />
+                            <figcaption>
+                                <div class="square">
+                                    <div></div>
+                                </div>
+                                <h2>@item.Name</h2>
+                                @if (!String.IsNullOrEmpty(customSubtitle))
+                                {
+                                    <p>@customSubtitle</p>
+                                }
+                            </figcaption>
+                            <a href="@Url.RouteUrl("Category", new { SeName = item.SeName })" title="@item.PictureModel.Title"></a>
+                        </figure>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
